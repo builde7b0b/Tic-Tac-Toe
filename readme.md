@@ -9,6 +9,10 @@ This is a simple implementation of a Tic Tac Toe game. The game can be played by
 * User Stories
 * Psuedo Logic
 
+## Wireframe
+![Wireframe](wireframe.png)
+
+
 ## Installation
 
 To use this Tic Tac Toe game, simply download the files or clone the repository to your local machine.
