@@ -4,10 +4,11 @@
 This is a simple implementation of a Tic Tac Toe game. The game can be played by two players, with Player 1 taking X's and Player 2 taking O's. The game is played on a 3x3 grid.
 
 ## Table of Contents
-
+* Wireframe
 * Installation
 * Usage
 * User Stories
+* User Stories - Psuedo Logic
 * Psuedo Logic
 
 ## Wireframe
