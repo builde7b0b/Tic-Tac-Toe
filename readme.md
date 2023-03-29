@@ -79,6 +79,27 @@ The game logic is based on the following psuedo code:
         * 3 o's in a row
         * in any direction
         * player 2 wins
+
+// Game logic - Detailed
+// When a player clicks a cell, add their position to their respective array
+// Check if the player has won by comparing their positions to winning combinations
+    // If the player has won, display a message and end the game
+// If the board is full and no player has won, display a tie message and end the game
+// If the game has not ended, switch to the other player's turn and continue playing
+
+// Set conditions for winning
+// Winning combinations:
+    // Row 1: [0, 1, 2]
+    // Row 2: [3, 4, 5]
+    // Row 3: [6, 7, 8]
+    // Column 1: [0, 3, 6]
+    // Column 2: [1, 4, 7]
+    // Column 3: [2, 5, 8]
+    // Diagonal 1: [0, 4, 8]
+    // Diagonal 2: [2, 4, 6]
+    // To check for a win, compare the player's positions to each of these combinations
+    // If the player's positions match a winning combination, they have won
+
 ```
 
 ## Technologies Used 

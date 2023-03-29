@@ -1,0 +1,21 @@
+body {
+
+    background-color: aqua;
+
+}
+
+.container {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    border: 1px solid black
+
+}
+
+.cell {
+    width: 100px;
+    height: 100px; 
+    font-size: 48px;
+    
+}

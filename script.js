@@ -49,3 +49,26 @@
     // Diagonal 2: [2, 4, 6]
     // To check for a win, compare the player's positions to each of these combinations
     // if the player's positions match a winning combination, they have won.
+
+
+
+
+
+// Create Board 
+//const grid = document.getElementById('grid');
+console.log("Connected")
+
+const container = document.createElement('div');
+container.className = 'container';
+
+for (let i = 0; i < 9; i++) {
+    const cell = document.createElement('div')
+
+    cell.className = 'cell';
+    cell.dataset.index = i;
+
+    container.appendChild(cell)
+
+}
+
+document.body.appendChild(container)
