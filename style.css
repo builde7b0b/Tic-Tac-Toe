@@ -6,6 +6,8 @@ body {
 
 .container {
     display: flex;
+    flex-wrap: wrap; 
+    /* wrap our cells to get the 3x3 layout */
     width: 300px;
     height: 300px;
     margin: 0 auto;
@@ -17,5 +19,12 @@ body {
     width: 100px;
     height: 100px; 
     font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    box-sizing: border-box; 
+    /* this keeps each cell from extending the rows */
+    cursor: pointer;
     
 }

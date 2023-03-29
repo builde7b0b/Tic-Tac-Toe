@@ -65,10 +65,71 @@ for (let i = 0; i < 9; i++) {
     const cell = document.createElement('div')
 
     cell.className = 'cell';
-    cell.dataset.index = i;
+    cell.dataset.index = i; // this allows us to keep track of each cell/clicks
 
     container.appendChild(cell)
 
 }
 
 document.body.appendChild(container)
+
+// select all cells
+// adding event listener to each cell
+const cells = document.querySelectorAll('.cell')
+
+cells.forEach((cell) => {
+    cell.addEventListener('click', handleCellClick);
+})
+
+const mockEvent = {
+    target: {
+      dataset: {
+        index: 0
+      },
+      textContent: ''
+    }
+  };
+// declr handleCellCick Function 
+function handleCellClick(e) {
+    // Get the Index of the clicked cell 
+    const index = e.target.dataset.index;
+    console.log("clicked")
+  
+    // get current player's symbol and positions array 
+    const currentPlayer = getCurrentPlayer();
+    const currentSymbol = currentPlayer.symbol;
+    const currentPositions = currentPlayer.positions;
+  
+    // add the current player's position to ther positions array 
+    currentPositions.push(Number(index));
+  
+    // add the current player'ss ymbol to the clicked cell 
+    e.target.textContent = currentSymbol;
+  
+    // check if the current player has won
+    if (checkWin(currentPositions)) {
+      //Display a message and end the game
+      endGame(`${currentSymbol} wins!`)
+    } else {
+      // switch Turn's 
+      switchPlayers()
+    }
+  }
+
+const player1Symbol = 'X';
+const player2Symbol = 'O';
+let player1Positions = [];
+let player2Positions = [];
+let gameEnded = false;
+
+const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
