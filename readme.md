@@ -1,5 +1,6 @@
 # Tic Tac Toe Game
 
+## Description
 This is a simple implementation of a Tic Tac Toe game. The game can be played by two players, with Player 1 taking X's and Player 2 taking O's. The game is played on a 3x3 grid.
 
 ## Table of Contents
@@ -39,15 +40,30 @@ Once the game is over, you can play again by clicking the "Play Again" button.
 * As a user, I should not be able to continue playing once I win, lose, or tie
 * As a user, I should be able to play the game again without refreshing the page
 
+## User Stories - Psuedo Logic
+* Start game > Click Button 
+* First Turn > Event Listener > Square(Div)
+*   forEach Turn, Func CheckWin, print message(win, lose, tie, current turn)
+    * If Square, has already been clicked, remove event listner from square[index]
+    * func checkWin > print win, lose, tie
+    * If GameOver === true, remove event listener from all squares or render unclickable.
+        print must reset game
+* reset game > ButtonClick > StartNewGame()
+
 ## Psuedo Logic
 
 The game logic is based on the following psuedo code:
+```
+// Render the game board
+// Create a 3x3 grid of divs and append them to the DOM
+// Add a click event listener to each cell to handle player moves
 
-* Create 3x3 grid and display on page
-* let player1 = x
-* let player2 = o
-* init var for p1 position
-* init var for p2 position
+// Initialize player symbols and positions
+// let player1Symbol = 'X'
+// let player2Symbol = 'O'
+// let player1Positions = []
+// let player2Positions = []
+
 * get each spot in the grid.
     * grid = array of divs
     * loop through array to track each position on the board
@@ -60,3 +76,7 @@ The game logic is based on the following psuedo code:
         * 3 o's in a row
         * in any direction
         * player 2 wins
+```
+
+## Technologies Used 
+* HTML / CSS / Javascript
