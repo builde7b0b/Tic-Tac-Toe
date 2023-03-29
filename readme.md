@@ -41,6 +41,7 @@ Once the game is over, you can play again by clicking the "Play Again" button.
 * As a user, I should be able to play the game again without refreshing the page
 
 ## User Stories - Psuedo Logic
+```
 * Start game > Click Button 
 * First Turn > Event Listener > Square(Div)
 *   forEach Turn, Func CheckWin, print message(win, lose, tie, current turn)
@@ -49,6 +50,7 @@ Once the game is over, you can play again by clicking the "Play Again" button.
     * If GameOver === true, remove event listener from all squares or render unclickable.
         print must reset game
 * reset game > ButtonClick > StartNewGame()
+```
 
 ## Psuedo Logic
 
