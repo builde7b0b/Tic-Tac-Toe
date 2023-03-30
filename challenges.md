@@ -22,3 +22,6 @@ set textContent = currentPlayer
 Track Top User's with most wins.
 Save Data somewhere(database)
 
+- [] Todo #4: User Story
+If there's a draw, no message is displayed.
+Display a message and reset the board.
