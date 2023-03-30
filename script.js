@@ -88,10 +88,13 @@ cells.forEach((cell) => {
 
 
 
+
+
 // declr handleCellCick Function 
 function handleCellClick(e) {
     // e is the click event
     // Get the Index of the clicked cell 
+    const cell = e.target;
     const index = e.target.dataset.index;
     console.log("clicked")
   
@@ -116,7 +119,7 @@ if (cell.textContent !== '') { // if the cell is not empty
     // check if the current player has won
     if (checkWin(currentPositions)) {
       //Display a message and end the game
-      endGame(`${currentSymbol} wins!`)
+      endGame(`${currentSymbol}`)
     } else {
       // switch Turn's 
       switchPlayers()
