@@ -25,3 +25,7 @@ Save Data somewhere(database)
 - [] Todo #4: User Story
 If there's a draw, no message is displayed.
 Display a message and reset the board.
+behavior: When all cells are filled, nothing happens.
+Expected behavior: output message and reset display button to reset game.
+
+Extended: This displays when it's a draw: It's a tie! wins!

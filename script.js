@@ -120,7 +120,12 @@ if (cell.textContent !== '') { // if the cell is not empty
     if (checkWin(currentPositions)) {
       //Display a message and end the game
       endGame(`${currentSymbol}`)
+    } else if (checkTie()) {
+      endGame("It's a tie!");
+      return; // exit early if there is a tie
+
     } else {
+
       // switch Turn's 
       switchPlayers()
     }
@@ -217,4 +222,38 @@ document.body.appendChild(message)
 
 
 
+function checkTie() {
+  //check if cells are filled 
+  const allCellsFilled = Array.from(cells).every(cell => cell.textContent !== '');
+  //check if there is no winner 
+  const noWinner = !checkWin(player1Positions) && !checkWin(player2Positions)
+  return allCellsFilled && noWinner 
 
+}
+
+
+// create the "button", add event listener
+const resetButton = document.createElement('button')
+resetButton.textContent = 'Reset'
+resetButton.addEventListener('click', resetGame)
+
+// Add the 'Reset" button to the page 
+document.body.appendChild(resetButton)
+
+// define the resetGame function 
+function resetGame() {
+  // clear all cells on the board 
+  cells.forEach(cell => cell.textContent = '')
+
+  //Reset game status and player positions 
+  player1Positions = [];
+  player2Positions = [];
+  gameEnded = false;
+
+  //reset message 
+  message.textContent = ''
+
+  //switch to player 1 turn
+  currentPlayer = player1Symbol;
+
+}
