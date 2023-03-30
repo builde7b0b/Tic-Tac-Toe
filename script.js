@@ -150,14 +150,20 @@ const winningCombinations = [
     [0, 4, 8],
     [2, 4, 6]
   ];
-// let currentPlayer = player1Symbol; //track cp
+  
+ let currentPlayer = getCurrentPlayer().symbol; //track cp
 
 //create message to display Who's turn and if a player Wins
 const message = document.createElement('div');
 message.className = 'message'
 document.body.appendChild(message)
 
+// update the message with the current's player's symbol:
+function updateMessage() {
+  message.textContent = `It's ${getCurrentPlayer().symbol}'s turn.`
+}
 
+updateMessage(); //call to set initial message
 
 // This function is used to determine the cp's symbol and position.
 // It's called by another function (handleCellClick) to update the player positions and symbols to the clicked cell.
@@ -218,6 +224,7 @@ document.body.appendChild(message)
           
     // single line using ternary
     currentPlayer = currentPlayer === player1Symbol ? player2Symbol : player1Symbol;
+    updateMessage(); //update call updateMessage when we switch turns
   }
 
 
