@@ -49,53 +49,126 @@
     // Diagonal 2: [2, 4, 6]
     // To check for a win, compare the player's positions to each of these combinations
     // if the player's positions match a winning combination, they have won.
+// END PSUEDO LOGIC 
+// #################
 
 
 
-
-let player1Wins = 0
-let player1Losses = 0
-let player1Ties = 0
-let player2Wins = 0
-let player2Losses = 0
-let player2Ties = 0
-
-const player1WinsEl = document.createElement('div');
-player1WinsEl.textContent = 'Wins: 0';
-
-const player1LossesEl = document.createElement('div');
-player1LossesEl.textContent = 'Losses: 0'
-
-const player1TiesEl = document.createElement('div')
-player1TiesEl.textContent = 'Ties: 0'
-
-const player2WinsEl = document.createElement('div')
-player2WinsEl.textContent = 'Wins: 0'
-
-const player2LossesEl = document.createElement('div')
-player2LossesEl.textContent = 'Losses: 0'
-
-const player2TiesEl = document.createElement('div')
-player2TiesEl.textContent = 'Ties: 0'
+  // init variables
+  const player1Symbol = 'X'; //player id's
+  const player2Symbol = 'O';
+  let player1Positions = []; // player positions arrays
+  let player2Positions = [];
+  let gameEnded = false; // game status
+  let currentPlayer = getCurrentPlayer().symbol; //track cp
+    
+  let player1Wins = 0
+  let player1Losses = 0
+  let player1Ties = 0
+  let player2Wins = 0
+  let player2Losses = 0
+  let player2Ties = 0
 
 
-document.body.appendChild(player1WinsEl)
-document.body.appendChild(player1LossesEl)
-document.body.appendChild(player1TiesEl)
-document.body.appendChild(player2WinsEl)
-document.body.appendChild(player2LossesEl);
-document.body.appendChild(player2TiesEl)
+  const player1SymbolEl = document.createElement('div')
+  player1SymbolEl.textContent = `player 1 (${player1Symbol})`
+
+  const player2SymbolEl = document.createElement('div')
+  player2SymbolEl.textContent = `Player 2 (${player2Symbol})`
+  const player1WinsEl = document.createElement('div');
+  player1WinsEl.textContent = 'Wins: 0';
+
+  const player1LossesEl = document.createElement('div');
+  player1LossesEl.textContent = 'Losses: 0'
+
+  const player1TiesEl = document.createElement('div')
+  player1TiesEl.textContent = 'Ties: 0'
+
+  const player2WinsEl = document.createElement('div')
+  player2WinsEl.textContent = 'Wins: 0'
+
+  const player2LossesEl = document.createElement('div')
+  player2LossesEl.textContent = 'Losses: 0'
+
+  const player2TiesEl = document.createElement('div')
+  player2TiesEl.textContent = 'Ties: 0'
+
+  document.body.appendChild(player1SymbolEl)
+  document.body.appendChild(player2SymbolEl)
+  document.body.appendChild(player1WinsEl)
+  document.body.appendChild(player1LossesEl)
+  document.body.appendChild(player1TiesEl)
+  document.body.appendChild(player2WinsEl)
+  document.body.appendChild(player2LossesEl);
+  document.body.appendChild(player2TiesEl)
 
 
+  // Winning Combinations to check against
+  // matches the grid Ex. 0, 1, 2 is the first row from left to right
+  const winningCombinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+    
+   
+// Create Board 
+//const grid = document.getElementById('grid');
+  console.log("Connected")
+
+  const container = document.createElement('div');
+  container.className = 'container';
+
+  // loop to create each cell
+  for (let i = 0; i < 9; i++) {
+      const cell = document.createElement('div')
+
+      cell.className = 'cell';
+      cell.dataset.index = i; // this allows us to keep track of each cell/clicks
+
+      container.appendChild(cell)
+
+  }
+  // add cells to UI
+  document.body.appendChild(container)
+
+  // select all cells
+  // adding event listener to each cell
+  const cells = document.querySelectorAll('.cell')
+  cells.forEach((cell) => {
+      cell.addEventListener('click', handleCellClick);
+  })
+
+  //create message to display Who's turn and if a player Wins
+  const message = document.createElement('div');
+  message.className = 'message'
+  document.body.appendChild(message)
+  
+  // create the "button", add event listener
+  const resetButton = document.createElement('button')
+  resetButton.textContent = 'Reset'
+  resetButton.addEventListener('click', resetGame)
+
+  // Add the 'Reset" button to the page 
+  document.body.appendChild(resetButton)
+
+
+// START FUNCTIONS
+// #################
 
 // add a function to update the wins/loss/tie counters in the UI
 function updateCounters() {
-  player1WinsEl.textContent = player1Wins
-  player1LossesEl.textContent = player1Losses
-  player1TiesEl.textContent = player1Ties
-  player2WinsEl.textContent = player2Wins 
-  player2LossesEl.textContent = player2Losses 
-  player2TiesEl.textContent = player2Ties
+  player1WinsEl.textContent = `Player 1 Wins: ${player1Wins}`
+  player1LossesEl.textContent = `Player 1 Losses: ${player1Losses}`
+  player1TiesEl.textContent = `Player 1 Ties: ${player1Ties}`
+  player2WinsEl.textContent = `Player 2 Wins: ${player2Wins}`
+  player2LossesEl.textContent = `Player 2 Losses: ${player2Losses}` 
+  player2TiesEl.textContent = `Player 2 Ties: ${player2Ties}`
 }
 
 function updateCountersForGame(winner) {
@@ -112,44 +185,6 @@ function updateCountersForGame(winner) {
   updateCounters()
 }
 
-
-
-// Create Board 
-//const grid = document.getElementById('grid');
-console.log("Connected")
-
-const container = document.createElement('div');
-container.className = 'container';
-
-for (let i = 0; i < 9; i++) {
-    const cell = document.createElement('div')
-
-    cell.className = 'cell';
-    cell.dataset.index = i; // this allows us to keep track of each cell/clicks
-
-    container.appendChild(cell)
-
-}
-
-document.body.appendChild(container)
-
-// select all cells
-// adding event listener to each cell
-const cells = document.querySelectorAll('.cell')
-
-cells.forEach((cell) => {
-    cell.addEventListener('click', handleCellClick);
-})
-
-
-
-
-
-
-
-
-
-
 // declr handleCellCick Function 
 function handleCellClick(e) {
 
@@ -163,10 +198,10 @@ function handleCellClick(e) {
     const index = e.target.dataset.index;
     console.log("clicked")
   
-// Check duplicate cell click 
-if (cell.textContent !== '') { // if the cell is not empty
-  return; // ignore the click
-}
+  // Check duplicate cell click 
+  if (cell.textContent !== '') { // if the cell is not empty
+    return; // ignore the click
+  }
 
     // get current player's symbol and positions array 
     const currentPlayer = getCurrentPlayer();
@@ -194,50 +229,21 @@ if (cell.textContent !== '') { // if the cell is not empty
       // switch Turn's 
       switchPlayers()
     }
-  }
+}
 
-  function disableCells() {
+function disableCells() {
     cells.forEach(cell => cell.removeEventListener('click', handleCellClick))
 
-  }
-
-
-  // init variables
-const player1Symbol = 'X'; //player id's
-const player2Symbol = 'O';
-let player1Positions = []; // player positions arrays
-let player2Positions = [];
-let gameEnded = false; // game status
-// Winning Combinations to check against
-// matches the grid Ex. 0, 1, 2 is the first row from left to right
-const winningCombinations = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
-  
- let currentPlayer = getCurrentPlayer().symbol; //track cp
-
-//create message to display Who's turn and if a player Wins
-const message = document.createElement('div');
-message.className = 'message'
-document.body.appendChild(message)
+}
 
 // update the message with the current's player's symbol:
 function updateMessage() {
   message.textContent = `It's ${getCurrentPlayer().symbol}'s turn.`
 }
 
-updateMessage(); //call to set initial message
-
 // This function is used to determine the cp's symbol and position.
 // It's called by another function (handleCellClick) to update the player positions and symbols to the clicked cell.
-  function getCurrentPlayer() {
+function getCurrentPlayer() {
     //retrn object, current player symbol and position
     // check if array's length are equal to determine who's turn it is
     // if equal, it's p1 turn otherwise it's player's 2 turn
@@ -245,11 +251,10 @@ updateMessage(); //call to set initial message
     return player1Positions.length === player2Positions.length ? 
       { symbol: player1Symbol, positions: player1Positions } : 
       { symbol: player2Symbol, positions: player2Positions };
-  }
-  
+}
   
 // every() array method
-  function checkWin(positions) {
+function checkWin(positions) {
     // params: an array of positions( cell indices on our grid/board)
     // loop through each combo of winning positions with for..of
     for (let combination of winningCombinations) {
@@ -260,9 +265,9 @@ updateMessage(); //call to set initial message
       }
     }
     return false; //NO Winner Yet
-  }
+}
   
-  function endGame(winner) {
+function endGame(winner) {
     // single param: winner
     //ends game
     
@@ -282,9 +287,9 @@ updateMessage(); //call to set initial message
     //call to disableCells function to disable further clicks
     disableCells()
     gameEnded = true; //sets game status to true, stops moves from being made
-  }
+}
   
-  function switchPlayers() {
+function switchPlayers() {
         // no args 
         // check current player
         // if cp = p1
@@ -301,9 +306,7 @@ updateMessage(); //call to set initial message
     // single line using ternary
     currentPlayer = currentPlayer === player1Symbol ? player2Symbol : player1Symbol;
     updateMessage(); //update call updateMessage when we switch turns
-  }
-
-
+}
 
 function checkTie() {
   //check if cells are filled 
@@ -313,15 +316,6 @@ function checkTie() {
   return allCellsFilled && noWinner 
 
 }
-
-
-// create the "button", add event listener
-const resetButton = document.createElement('button')
-resetButton.textContent = 'Reset'
-resetButton.addEventListener('click', resetGame)
-
-// Add the 'Reset" button to the page 
-document.body.appendChild(resetButton)
 
 // define the resetGame function 
 function resetGame() {
@@ -343,3 +337,6 @@ function resetGame() {
   currentPlayer = player1Symbol;
 
 }
+
+
+updateMessage(); //call to set initial message
