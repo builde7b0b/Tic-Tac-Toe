@@ -53,6 +53,66 @@
 
 
 
+let player1Wins = 0
+let player1Losses = 0
+let player1Ties = 0
+let player2Wins = 0
+let player2Losses = 0
+let player2Ties = 0
+
+const player1WinsEl = document.createElement('div');
+player1WinsEl.textContent = 'Wins: 0';
+
+const player1LossesEl = document.createElement('div');
+player1LossesEl.textContent = 'Losses: 0'
+
+const player1TiesEl = document.createElement('div')
+player1TiesEl.textContent = 'Ties: 0'
+
+const player2WinsEl = document.createElement('div')
+player2WinsEl.textContent = 'Wins: 0'
+
+const player2LossesEl = document.createElement('div')
+player2LossesEl.textContent = 'Losses: 0'
+
+const player2TiesEl = document.createElement('div')
+player2TiesEl.textContent = 'Ties: 0'
+
+
+document.body.appendChild(player1WinsEl)
+document.body.appendChild(player1LossesEl)
+document.body.appendChild(player1TiesEl)
+document.body.appendChild(player2WinsEl)
+document.body.appendChild(player2LossesEl);
+document.body.appendChild(player2TiesEl)
+
+
+
+// add a function to update the wins/loss/tie counters in the UI
+function updateCounters() {
+  player1WinsEl.textContent = player1Wins
+  player1LossesEl.textContent = player1Losses
+  player1TiesEl.textContent = player1Ties
+  player2WinsEl.textContent = player2Wins 
+  player2LossesEl.textContent = player2Losses 
+  player2TiesEl.textContent = player2Ties
+}
+
+function updateCountersForGame(winner) {
+  if (winner === player1Symbol) {
+    player1Wins++
+    player2Losses++
+  } else if (winner === player2Symbol) {
+    player2Wins++
+    player1Losses++
+  } else {
+    player1Ties++
+    player2Ties++
+  }
+  updateCounters()
+}
+
+
 
 // Create Board 
 //const grid = document.getElementById('grid');
@@ -216,6 +276,8 @@ updateMessage(); //call to set initial message
     message.innerText = winner ? `${winner} wins!` : "It's a tie!";
   
     // if true, winner wins, else it's a tie.
+
+    updateCountersForGame(winner)
 
     //call to disableCells function to disable further clicks
     disableCells()

@@ -22,7 +22,7 @@ set textContent = currentPlayer
 Track Top User's with most wins.
 Save Data somewhere(database)
 
-- [] Todo #4: User Story
+- [] Todo #4: User Story bug
 If there's a draw, no message is displayed.
 Display a message and reset the board.
 behavior: When all cells are filled, nothing happens.
@@ -41,3 +41,8 @@ Expected behavior: When a user wins or the game ends, ignore the further clicks 
 Solution: modify the handleCellClick function to disable all cells on the board once the game has ended.
 
 
+git co
+Track rounds, and stats
+When we update the counters, we need to be sure to assign key next to each value so we know what we are tracking. 
+Current Behavior: Just shows the Number's with no Stat preceding it.
+Before we start the game we can see the the name for each counter.
