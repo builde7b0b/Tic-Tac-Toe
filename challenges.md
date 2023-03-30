@@ -14,7 +14,7 @@ func reset(){
     createElement(Button) 
 }
 
-- [] Todo #1: Display a message to show who's turn it is.
+- [x] Todo #1: Display a message to show who's turn it is.
 document.createElement('div')
 set textContent = currentPlayer
 

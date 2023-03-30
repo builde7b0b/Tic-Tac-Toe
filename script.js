@@ -92,6 +92,11 @@ cells.forEach((cell) => {
 
 // declr handleCellCick Function 
 function handleCellClick(e) {
+
+  // check if the game ended early
+  if (gameEnded) {
+    return; // exit early if the game has ended
+  }
     // e is the click event
     // Get the Index of the clicked cell 
     const cell = e.target;
@@ -129,6 +134,11 @@ if (cell.textContent !== '') { // if the cell is not empty
       // switch Turn's 
       switchPlayers()
     }
+  }
+
+  function disableCells() {
+    cells.forEach(cell => cell.removeEventListener('click', handleCellClick))
+
   }
 
 
@@ -204,7 +214,11 @@ updateMessage(); //call to set initial message
     // display message based on if a winner exist, using ternary operator. 
 
     message.innerText = winner ? `${winner} wins!` : "It's a tie!";
+  
     // if true, winner wins, else it's a tie.
+
+    //call to disableCells function to disable further clicks
+    disableCells()
     gameEnded = true; //sets game status to true, stops moves from being made
   }
   
@@ -250,7 +264,10 @@ document.body.appendChild(resetButton)
 // define the resetGame function 
 function resetGame() {
   // clear all cells on the board 
-  cells.forEach(cell => cell.textContent = '')
+  cells.forEach(cell => {
+    cell.textContent = ''
+    cell.addEventListener('click', handleCellClick);
+  })
 
   //Reset game status and player positions 
   player1Positions = [];
