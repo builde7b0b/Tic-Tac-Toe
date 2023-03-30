@@ -30,10 +30,12 @@ Expected behavior: output message and reset display button to reset game.
 
 Extended: This displays when it's a draw: It's a tie! wins!
 
-- [] Todo #5: User Story
+- [x] Todo #5: User Story
 When we reset the game using the reset button, the message remains from the endGame function.
+Solution: //reset message 
+  message.textContent = ''
 
-- [] Todo #6: User Story
+- [x] Todo #6: User Story
 When the game is over, the user can still click the cells.
 Expected behavior: When a user wins or the game ends, ignore the further clicks on cells and emit a notification that tells a user to reset the game.
 Solution: modify the handleCellClick function to disable all cells on the board once the game has ended.
