@@ -81,31 +81,38 @@ cells.forEach((cell) => {
     cell.addEventListener('click', handleCellClick);
 })
 
-const mockEvent = {
-    target: {
-      dataset: {
-        index: 0
-      },
-      textContent: ''
-    }
-  };
+
+
+
+
+
+
+
 // declr handleCellCick Function 
 function handleCellClick(e) {
+    // e is the click event
     // Get the Index of the clicked cell 
     const index = e.target.dataset.index;
     console.log("clicked")
   
+// Check duplicate cell click 
+if (cell.textContent !== '') { // if the cell is not empty
+  return; // ignore the click
+}
+
     // get current player's symbol and positions array 
     const currentPlayer = getCurrentPlayer();
+    //returns as obj with symbol/positions props
     const currentSymbol = currentPlayer.symbol;
     const currentPositions = currentPlayer.positions;
   
-    // add the current player's position to ther positions array 
+    // add the current player's position(Clicked Cell) to their positions array 
     currentPositions.push(Number(index));
-  
-    // add the current player'ss ymbol to the clicked cell 
+  console.log(currentPositions)
+    // add the current player's symbol to the clicked cell  || puts the symbol into the cell
     e.target.textContent = currentSymbol;
-  
+    console.log(currentSymbol)
+
     // check if the current player has won
     if (checkWin(currentPositions)) {
       //Display a message and end the game
@@ -116,12 +123,15 @@ function handleCellClick(e) {
     }
   }
 
-const player1Symbol = 'X';
-const player2Symbol = 'O';
-let player1Positions = [];
-let player2Positions = [];
-let gameEnded = false;
 
+  // init variables
+const player1Symbol = 'X'; //player id's
+const player2Symbol = 'O';
+let player1Positions = []; // player positions arrays
+let player2Positions = [];
+let gameEnded = false; // game status
+// Winning Combinations to check against
+// matches the grid Ex. 0, 1, 2 is the first row from left to right
 const winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
@@ -132,4 +142,76 @@ const winningCombinations = [
     [0, 4, 8],
     [2, 4, 6]
   ];
+// let currentPlayer = player1Symbol; //track cp
+
+//create message to display Who's turn and if a player Wins
+const message = document.createElement('div');
+message.className = 'message'
+document.body.appendChild(message)
+
+
+
+// This function is used to determine the cp's symbol and position.
+// It's called by another function (handleCellClick) to update the player positions and symbols to the clicked cell.
+  function getCurrentPlayer() {
+    //retrn object, current player symbol and position
+    // check if array's length are equal to determine who's turn it is
+    // if equal, it's p1 turn otherwise it's player's 2 turn
+    // return player
+    return player1Positions.length === player2Positions.length ? 
+      { symbol: player1Symbol, positions: player1Positions } : 
+      { symbol: player2Symbol, positions: player2Positions };
+  }
+  
+  
+// every() array method
+  function checkWin(positions) {
+    // params: an array of positions( cell indices on our grid/board)
+    // loop through each combo of winning positions with for..of
+    for (let combination of winningCombinations) {
+        // check if *every position in the combo is incl in the param array
+      if (combination.every(index => positions.includes(index))) {
+        // if YES, return true. We have a WINNER.
+        return true;
+      }
+    }
+    return false; //NO Winner Yet
+  }
+  
+  function endGame(winner) {
+    // single param: winner
+    //ends game
+    
+    // if (winner) {
+    //     message.innerText = `${winner} wins!`;
+    //   } else {
+    //     message.innerText = "It's a tie!";
+    //   }
+    // display message based on if a winner exist, using ternary operator. 
+
+    message.innerText = winner ? `${winner} wins!` : "It's a tie!";
+    // if true, winner wins, else it's a tie.
+    gameEnded = true; //sets game status to true, stops moves from being made
+  }
+  
+  function switchPlayers() {
+        // no args 
+        // check current player
+        // if cp = p1
+            // switch player, cp = p2
+        // else
+            // set cp = p1
+            
+        // if (currentPlayer === player1Symbol) {
+        //     currentPlayer = player2Symbol;
+        //   } else {
+        //     currentPlayer = player1Symbol;
+        //   }
+          
+    // single line using ternary
+    currentPlayer = currentPlayer === player1Symbol ? player2Symbol : player1Symbol;
+  }
+
+
+
 
