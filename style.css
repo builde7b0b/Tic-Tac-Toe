@@ -46,8 +46,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     background-color: red;
-
-
+    justify-content: space-around;
+    align-items: center;  
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
     
 }
 
@@ -57,5 +60,75 @@ body {
     grid-template-rows: repeat(3, 1fr) ;
     gap: 10px;
     justify-items: center;
+    align-items: center; 
+    margin: 10px; 
+    padding: 10px ;
+    border: 2px solid #333; 
+    border-radius: 10px;
+    background-color: #4CAF50;
 
 }
+
+.stats-box > div {
+    font-size: 24px;
+    text-align: center;
+    color: white;
+}
+
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8e41
+}
+
+
+
+
+
+@media screen and (max-width: 200px) {
+    .stats-container {
+        flex-direction: column;
+    }
+    .stats-box {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .stats-box > div {
+        font-size: 20px;
+    }
+
+    
+.container {
+    flex-direction: column;
+    max-width: 200px;
+ 
+}
+
+.cell {
+    width: 100px;
+    height: 100px; 
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid black;
+    box-sizing: border-box; 
+    /* this keeps each cell from extending the rows */
+    cursor: pointer;
+    
+}
+}
+

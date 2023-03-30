@@ -57,3 +57,6 @@ Audio()
 
 - [] Todo #10: Make your site fully responsive so that it is playable from a mobile phone
 @media - CSS 
+
+
+- [] Todo #11: Figure out how to make the grid smaller when we decrease the screen size just like with the stats box.
