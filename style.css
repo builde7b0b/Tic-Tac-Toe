@@ -1,8 +1,10 @@
 body {
 
-    background-color: aqua;
+    background-color: white;
 
 }
+
+
 
 .container {
     display: flex;
@@ -22,9 +24,38 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    border: 10px solid black;
     box-sizing: border-box; 
     /* this keeps each cell from extending the rows */
     cursor: pointer;
     
+}
+
+
+
+.player-1 {
+    background-color: red;
+}
+
+.player-2 {
+    background-color: blue;
+}
+
+
+.stat-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: red;
+
+
+    
+}
+
+.stats-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr) ;
+    gap: 10px;
+    justify-items: center;
+
 }

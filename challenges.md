@@ -6,7 +6,7 @@ Behavior: User can click on a cell and then cilck again to change selection.
 Expected behavior: allow user to click on a cell once, once clicked and assigned a symbol, This cell cannot be cicked again until the game resets.
 check if the clicked cell has already been filled either with x or o, if it has then ignore the click.
 
-- [x]  Todo #2: add Function to reset game 
+- [x]  Todo #1: add Function to reset game 
 func reset(){
     clear game board
     message: "Game Reset"
@@ -14,7 +14,7 @@ func reset(){
     createElement(Button) 
 }
 
-- [x] Todo #1: Display a message to show who's turn it is.
+- [x] Todo #2: Display a message to show who's turn it is.
 document.createElement('div')
 set textContent = currentPlayer
 
@@ -46,3 +46,14 @@ Track rounds, and stats
 When we update the counters, we need to be sure to assign key next to each value so we know what we are tracking. 
 Current Behavior: Just shows the Number's with no Stat preceding it.
 Before we start the game we can see the the name for each counter.
+
+- [] Todo #8: Customize Symbols Feature
+add input field to capture custom symbol 
+add event listener with function to change the symbol
+
+- [] Todo #9: Involve Audio in your game
+JS Built in methods for sound/audio
+Audio()
+
+- [] Todo #10: Make your site fully responsive so that it is playable from a mobile phone
+@media - CSS 

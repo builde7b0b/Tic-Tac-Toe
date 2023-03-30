@@ -70,6 +70,12 @@
   let player2Ties = 0
 
 
+  const statsContainer = document.createElement('div')
+  statsContainer.className = 'stats-container'
+
+  const statsBox = document.createElement('div')
+  statsBox.className = 'stats-box'
+
   const player1SymbolEl = document.createElement('div')
   player1SymbolEl.textContent = `player 1 (${player1Symbol})`
 
@@ -93,14 +99,16 @@
   const player2TiesEl = document.createElement('div')
   player2TiesEl.textContent = 'Ties: 0'
 
-  document.body.appendChild(player1SymbolEl)
-  document.body.appendChild(player2SymbolEl)
-  document.body.appendChild(player1WinsEl)
-  document.body.appendChild(player1LossesEl)
-  document.body.appendChild(player1TiesEl)
-  document.body.appendChild(player2WinsEl)
-  document.body.appendChild(player2LossesEl);
-  document.body.appendChild(player2TiesEl)
+  document.body.appendChild(statsContainer)
+  statsContainer.appendChild(statsBox)
+  statsBox.appendChild(player1SymbolEl)
+  statsBox.appendChild(player2SymbolEl)
+  statsBox.appendChild(player1WinsEl)
+  statsBox.appendChild(player1LossesEl)
+  statsBox.appendChild(player1TiesEl)
+  statsBox.appendChild(player2WinsEl)
+  statsBox.appendChild(player2LossesEl);
+  statsBox.appendChild(player2TiesEl)
 
 
   // Winning Combinations to check against
@@ -214,6 +222,7 @@ function handleCellClick(e) {
   console.log(currentPositions)
     // add the current player's symbol to the clicked cell  || puts the symbol into the cell
     e.target.textContent = currentSymbol;
+    e.target.classList.add(`player-${currentSymbol.toLowerCase()}`)
     console.log(currentSymbol)
 
     // check if the current player has won
