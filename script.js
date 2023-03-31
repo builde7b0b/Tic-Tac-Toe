@@ -218,7 +218,7 @@ symbolRainbow.textContent = '🌈'
 
 let symbolKing = document.createElement('div')
 symbolKing.className = 'symbol'
-symbolKing.textContent = '🐱'
+symbolKing.textContent = '👑'
 
 let symbolUnicorn = document.createElement('div')
 symbolUnicorn.className = 'symbol'

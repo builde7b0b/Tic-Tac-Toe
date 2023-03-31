@@ -150,3 +150,22 @@ button:hover {
     text-transform: uppercase:
 
 }
+
+.symbol-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.symbol {
+    font-size: 2rem;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.symbol:hover {
+    transform: scale(1.1);
+}
