@@ -47,16 +47,16 @@ When we update the counters, we need to be sure to assign key next to each value
 Current Behavior: Just shows the Number's with no Stat preceding it.
 Before we start the game we can see the the name for each counter.
 
-- [] Todo #8: Customize Symbols Feature
+- [x] Todo #8: Customize Symbols Feature
 add input field to capture custom symbol 
 add event listener with function to change the symbol
 
-- [] Todo #9: Involve Audio in your game
+- [x] Todo #9: Involve Audio in your game
 JS Built in methods for sound/audio
 Audio()
 
 - [] Todo #10: Make your site fully responsive so that it is playable from a mobile phone
 @media - CSS 
-
+having trouble with grid and getting it to size down according to screens size.
 
 - [] Todo #11: Figure out how to make the grid smaller when we decrease the screen size just like with the stats box.

@@ -99,6 +99,10 @@
   const player2TiesEl = document.createElement('div')
   player2TiesEl.textContent = 'Ties: 0'
 
+  const logo = document.createElement('h1')
+  logo.textContent = 'Tic Tac Gene'
+  logo.className = 'logo-container'
+  document.body.appendChild(logo)
   document.body.appendChild(statsContainer)
   statsContainer.appendChild(statsBox)
   statsBox.appendChild(player1SymbolEl)
@@ -236,6 +240,15 @@ symbolBox.appendChild(symbolDog)
 symbolBox.appendChild(symbolParty)
 symbolBox.appendChild(symbolUnicorn)
 
+
+
+
+// Create audio element
+const audio = new Audio('splat.wav');
+
+const resetAudio = new Audio('break.wav')
+
+
 // START FUNCTIONS
 // #################
 
@@ -265,6 +278,10 @@ function updateCountersForGame(winner) {
 
 // declr handleCellCick Function 
 function handleCellClick(e) {
+
+  // Play audio
+  audio.currentTime = 0;
+  audio.play();
 
   // check if the game ended early
   if (gameEnded) {
@@ -308,6 +325,8 @@ function handleCellClick(e) {
       // switch Turn's 
       switchPlayers()
     }
+
+    
 }
 
 function disableCells() {
@@ -414,7 +433,9 @@ function resetGame() {
 
   //switch to player 1 turn
   currentPlayer = player1Symbol;
-
+  // Reset audio and play
+  resetAudio.currentTime = 0;
+  resetAudio.play();
 }
 
 
