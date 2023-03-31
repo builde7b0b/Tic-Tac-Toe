@@ -55,8 +55,8 @@
 
 
   // init variables
-  const player1Symbol = 'X'; //player id's
-  const player2Symbol = 'O';
+  let player1Symbol = 'X'; //player id's
+  let player2Symbol = 'O';
   let player1Positions = []; // player positions arrays
   let player2Positions = [];
   let gameEnded = false; // game status
@@ -154,9 +154,10 @@
 
   //create message to display Who's turn and if a player Wins
   const message = document.createElement('div');
-  message.className = 'message'
-  document.body.appendChild(message)
-  
+  message.className = 'message';
+  message.textContent = 'Click a square to start the game!'; // add default message text
+  document.body.appendChild(message);
+    
   // create the "button", add event listener
   const resetButton = document.createElement('button')
   resetButton.textContent = 'Reset'
@@ -165,6 +166,75 @@
   // Add the 'Reset" button to the page 
   document.body.appendChild(resetButton)
 
+
+
+
+  // Allow players to customize their symbols
+const player1SymbolInput = document.createElement('input');
+player1SymbolInput.placeholder = 'Player 1 Symbol';
+const player2SymbolInput = document.createElement('input');
+player2SymbolInput.placeholder = 'Player 2 Symbol';
+document.body.appendChild(player1SymbolInput);
+document.body.appendChild(player2SymbolInput);
+
+// Add event listeners to the symbol input fields to update the symbols when the inputs change
+player1SymbolInput.addEventListener('input', () => {
+  player1Symbol = player1SymbolInput.value || 'X';
+  player1SymbolEl.textContent = `Player 1 (${player1Symbol}): `;
+});
+
+player2SymbolInput.addEventListener('input', () => {
+  player2Symbol = player2SymbolInput.value || 'O';
+  player2SymbolEl.textContent = `Player 2 (${player2Symbol}): `;
+});
+
+
+let symbolBox = document.createElement('div')
+symbolBox.className = 'symbol-box'
+
+let symbolHeart = document.createElement('div')
+symbolHeart.className = 'symbol'
+symbolHeart.textContent = '❤️'
+
+let symbolStar = document.createElement('div')
+symbolStar.className = 'symbol'
+symbolStar.textContent = '⭐'
+
+let symbolParty = document.createElement('div')
+symbolParty.className = 'symbol'
+symbolParty.textContent = '🎉'
+
+let symbolDog = document.createElement('div')
+symbolDog.className = 'symbol'
+symbolDog.textContent = '🐶'
+
+let symbolCat = document.createElement('div')
+symbolCat.className = 'symbol'
+symbolCat.textContent = '🐱'
+
+let symbolRainbow = document.createElement('div')
+symbolRainbow.className = 'symbol'
+symbolRainbow.textContent = '🌈'
+
+let symbolKing = document.createElement('div')
+symbolKing.className = 'symbol'
+symbolKing.textContent = '🐱'
+
+let symbolUnicorn = document.createElement('div')
+symbolUnicorn.className = 'symbol'
+symbolUnicorn.textContent = '🦄'
+
+
+document.body.appendChild(symbolBox)
+symbolBox.appendChild(symbolHeart)
+
+symbolBox.appendChild(symbolStar)
+symbolBox.appendChild(symbolRainbow)
+symbolBox.appendChild(symbolKing)
+symbolBox.appendChild(symbolCat)
+symbolBox.appendChild(symbolDog)
+symbolBox.appendChild(symbolParty)
+symbolBox.appendChild(symbolUnicorn)
 
 // START FUNCTIONS
 // #################
@@ -340,7 +410,7 @@ function resetGame() {
   gameEnded = false;
 
   //reset message 
-  message.textContent = ''
+  message.textContent = 'Click a square to start the game!'
 
   //switch to player 1 turn
   currentPlayer = player1Symbol;
