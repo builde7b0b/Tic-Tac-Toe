@@ -14,6 +14,11 @@ This is a simple implementation of a Tic Tac Toe game. The game can be played by
 ## Wireframe
 ![Wireframe](wireframe.png)
 
+## Bronze MVP
+![Bronze MPV](bronze.png)
+
+## Silver MVP
+![Silver](silver.png)
 
 ## Installation
 

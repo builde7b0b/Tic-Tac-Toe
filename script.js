@@ -102,6 +102,16 @@
   const logo = document.createElement('h1')
   logo.textContent = 'Tic Tac Gene'
   logo.className = 'logo-container'
+  logo.classList.add('logo');
+  const icon = document.createElement('img');
+  icon.src = 'https://img.icons8.com/external-others-cattaleeya-thongsriphong/256/external-game-relax-at-home-color-line-others-cattaleeya-thongsriphong.png';
+  icon.alt = 'Icon';
+
+  const title = document.createElement('span');
+title.textContent = 'Your Rules, Your Way';
+title.className = 'game-title'
+logo.appendChild(icon);
+logo.appendChild(title);
   document.body.appendChild(logo)
   document.body.appendChild(statsContainer)
   statsContainer.appendChild(statsBox)
