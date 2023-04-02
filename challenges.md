@@ -73,5 +73,6 @@ teach player about
 Ai working sort of - Issue: simulates entire game instead of move by move
 script.js:566 Uncaught TypeError: cells.map is not a function
     at HTMLButtonElement.startVsAI (script.js:566:33)
-
-
+check handleCellClick function
+handleCellClick function for every empty cell when the computer is playing. This causes the computer to make all the moves by itself, without giving the player a chance to play.
+check if the computer is playing and handle the computer's move separately. 

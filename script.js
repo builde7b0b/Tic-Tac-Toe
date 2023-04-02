@@ -161,7 +161,6 @@ logo.appendChild(title);
 
   // select all cells
   // adding event listener to each cell
-  //convert to an array
   const cells = document.querySelectorAll('.cell')
   cells.forEach((cell) => {
       cell.addEventListener('click', handleCellClick);
@@ -259,10 +258,21 @@ const audio = new Audio('splat.wav');
 
 const resetAudio = new Audio('break.wav')
 
+const vsAiButton = document.createElement('button');
+vsAiButton.textContent = 'Play against AI';
+document.body.appendChild(vsAiButton);
+vsAiButton.addEventListener('click', () => {
+  vsAI = true;
+  player2Symbol = "🤖"; // Set the AI's symbol to the robot
+});
 
+const vsUserButton = document.createElement('button');
+vsUserButton.textContent = 'Play against User';
+document.body.appendChild(vsUserButton);
+vsUserButton.addEventListener('click', () => {
+  vsAI = false;
+});
 
-
-let isComputerPlaying = false;
 
 
 // START FUNCTIONS
@@ -295,6 +305,7 @@ function updateCountersForGame(winner) {
 // declr handleCellCick Function 
 function handleCellClick(e) {
 
+  
   // Play audio
   audio.currentTime = 0;
   audio.play();
@@ -303,47 +314,69 @@ function handleCellClick(e) {
   if (gameEnded) {
     return; // exit early if the game has ended
   }
-    // e is the click event
-    // Get the Index of the clicked cell 
-    const cell = e.target;
-    const index = e.target.dataset.index;
-    console.log("clicked")
+
+  // e is the click event
+  // Get the Index of the clicked cell 
+  const cell = e.target;
+  const index = e.target.dataset.index;
+  console.log("clicked")
   
   // Check duplicate cell click 
   if (cell.textContent !== '') { // if the cell is not empty
     return; // ignore the click
   }
 
-    // get current player's symbol and positions array 
-    const currentPlayer = getCurrentPlayer();
-    //returns as obj with symbol/positions props
-    const currentSymbol = currentPlayer.symbol;
-    const currentPositions = currentPlayer.positions;
-  
-    // add the current player's position(Clicked Cell) to their positions array 
-    currentPositions.push(Number(index));
-  console.log(currentPositions)
-    // add the current player's symbol to the clicked cell  || puts the symbol into the cell
-    e.target.textContent = currentSymbol;
-    e.target.classList.add(`player-${currentSymbol.toLowerCase()}`)
-    console.log(currentSymbol)
+  // get current player's symbol and positions array 
+  const currentPlayer = getCurrentPlayer();
+  //returns as obj with symbol/positions props
+  const currentSymbol = currentPlayer.symbol;
+  const currentPositions = currentPlayer.positions;
 
-    // check if the current player has won
-    if (checkWin(currentPositions)) {
+  // add the current player's position(Clicked Cell) to their positions array 
+  currentPositions.push(Number(index));
+  console.log(currentPositions);
+
+  // add the current player's symbol to the clicked cell  || puts the symbol into the cell
+  cell.textContent = currentSymbol;
+  cell.classList.add(`player-${currentSymbol.toLowerCase()}`);
+  console.log(currentSymbol);
+
+  // check if the current player has won
+  if (checkWin(currentPositions)) {
+    //Display a message and end the game
+    endGame(`${currentSymbol}`);
+  } else if (checkTie()) {
+    endGame("It's a tie!");
+    return; // exit early if there is a tie
+  } else if (vsAI && currentPlayer.symbol === player1Symbol) {
+    // If playing against AI and it's the AI's turn, get the best move and update the board
+    const cellsArray = [...cells];
+    const aiMove = getBestMove(cellsArray.map(cell => cell.textContent), player2Symbol);
+        const aiCell = cells[aiMove];
+    aiCell.textContent = player2Symbol;
+    aiCell.classList.add('player-o');
+    player2Positions.push(aiMove);
+
+    // check if the AI has won
+    if (checkWin(player2Positions)) {
       //Display a message and end the game
-      endGame(`${currentSymbol}`)
+      endGame(`${player2Symbol}`);
     } else if (checkTie()) {
       endGame("It's a tie!");
       return; // exit early if there is a tie
-
     } else {
-
       // switch Turn's 
-      switchPlayers()
+      switchPlayers();
     }
-
-    
+  } else {
+    // delay for 1 second and switch turn to player 1
+    setTimeout(() => {
+      switchPlayers();
+    }, 3000);
+  }
 }
+
+
 
 function disableCells() {
     cells.forEach(cell => cell.removeEventListener('click', handleCellClick))
@@ -369,9 +402,6 @@ function getCurrentPlayer() {
   
 // every() array method
 function checkWin(positions) {
-
-  // update the function signature to function checkWin(positions, symbol) and replace player1Symbol and player2Symbol with symbol wherever they appear in the function.
-
     // params: an array of positions( cell indices on our grid/board)
     // loop through each combo of winning positions with for..of
     for (let combination of winningCombinations) {
@@ -420,25 +450,9 @@ function switchPlayers() {
         //     currentPlayer = player1Symbol;
         //   }
           
-    // // single line using ternary
-    // currentPlayer = currentPlayer === player1Symbol ? player2Symbol : player1Symbol;
-    // updateMessage(); //update call updateMessage when we switch turns
-    // Check if computer is playing
-  if (isComputerPlaying) {
-    // If computer is playing, set currentPlayer to player1Symbol
-    currentPlayer = player1Symbol;
-    // Call the handleCellClick function for each cell to make the computer move
-    cells.forEach(cell => {
-      if (cell.textContent === '') {
-        cell.click();
-      }
-    });
-  } else {
-    // If computer is not playing, switch players as before
+    // single line using ternary
     currentPlayer = currentPlayer === player1Symbol ? player2Symbol : player1Symbol;
-    updateMessage();
-  }
-    
+    updateMessage(); //update call updateMessage when we switch turns
 }
 
 function checkTie() {
@@ -474,108 +488,84 @@ function resetGame() {
 }
 
 
-// Minimax Algo Function PseudoCode 
-function getBestMove(currentBoard, computerSymbol) {
-  // if the game is over, return the score
-  if (checkWin(currentBoard, player2Symbol)) {
-    return { score: 10 };
 
-  } else if (checkWin(currentBoard, player1Symbol)) {
-    return { score: -10 };
-
-  } else if (getAvailableMoves(currentBoard).length === 0) {
-    return { score: 0 };
+function getBestMove(state, player) {
+  if (checkWin(player1Positions) || checkWin(player2Positions) || checkTie()) {
+    // game has ended, return null
+    return null;
   }
 
-  // Init the best move obj 
-  let bestMove = {}
+  const emptyCells = getEmptyCells(state);
 
-  // If it's the computr's turn, maximize the score 
-  if (computerSymbol === player2Symbol) {
-    bestMove.score = -Infinity;
-    // Loop through all available moves
-    getAvailableMoves(currentBoard).forEach((move) => {
-      // Make the Move 
-      curerntBoard[move] = computerSymbol;
-      //Recursively call the function to get teh score for the current move 
-      let sco;re = getBestMove(currentBoard, player1Symbol).score;
-      //Undo The move 
-      currentBoard[move] = '';
-      //If the current move has a better score, update the best move object 
-      if (score > bestMove.score) {
-        bestMove.score = score;
-        bestMove.index = move;
-      }
-    })
-    // If it's the player's turn, minimize the score
+  let bestScore = player === player1Symbol ? -Infinity : Infinity;
+  let bestMove = null;
+
+  for (let i = 0; i < emptyCells.length; i++) {
+    const index = emptyCells[i];
+    const newState = [...state];
+    newState[index] = player;
+
+    const score = minimax(newState, player, false);
+
+    if ((player === player1Symbol && score > bestScore) || (player === player2Symbol && score < bestScore)) {
+      bestScore = score;
+      bestMove = index;
+    }
+  }
+
+  return bestMove;
+}
+
+
+function getEmptyCells(state) {
+  const emptyCells = [];
+  for (let i = 0; i < state.length; i++) {
+    if (state[i] === '') {
+      emptyCells.push(i);
+    }
+  }
+  return emptyCells;
+}
+
+
+function minimax(state, player, isMaximizing) {
+  if (checkWin(player1Positions)) {
+    return -1;
+  }
+  if (checkWin(player2Positions)) {
+    return 1;
+  }
+  if (checkTie()) {
+    return 0;
+  }
+
+  const emptyCells = getEmptyCells(state);
+
+  if (isMaximizing) {
+    let bestScore = -Infinity;
+    for (let i = 0; i < emptyCells.length; i++) {
+      const index = emptyCells[i];
+      const newState = [...state];
+      newState[index] = player;
+
+      const score = minimax(newState, player, false);
+      bestScore = Math.max(bestScore, score);
+    }
+    return bestScore;
   } else {
-    bestMove.score = Infinity;
-    //Loop through all the available moves 
-    getAvailableMoves(currentBoard).forEach((move) => {
-      // Make the LMove 
-      currentBoard[move] = computerSymbol
-      //Recursively call the function to get the score for the current move
-      let score = getBestMove(currentBoard, player2Symbol).score
-      //Unldo the move 
-      currentBoard[move] = ''
-      // If the current move has a better score, update the best move object 
-      if (score < bestMove.score) {
-        bestMove.score = score 
-        bestMove.index = move
-      }
-    })
-  }
+    let bestScore = Infinity;
+    for (let i = 0; i < emptyCells.length; i++) {
+      const index = emptyCells[i];
+      const newState = [...state];
+      newState[index] = player === player1Symbol ? player2Symbol : player1Symbol;
 
-  // return the best move object 
-  return bestMove
-
-
-
-
-}
-
-
-function getAvailableMoves(board) {
-  return board.filter((cell, index) => cell === '' && index !== undefined);
-}
-
-
-const playVsAIButton = document.createElement('button')
-playVsAIButton.id = 'play-vs-ai'
-playVsAIButton.textContent = 'Play Vs AI';
-
-function startVsAI() {
-
-// Set isComputerPlaying to true
-isComputerPlaying = true;
-
-  // Determine whether the player will be player 1 or player 2
-  const playerNumber = Math.round(Math.random()) + 1;
-  //Alternatively, you could add a prompt to ask the user which symbol they want to play as
-  // const playerSymbol = prompt('Choose Your Symbol (X or OJ)').toUpperCase()
-
-  //Update the messatge to show whose turn it is 
-  if (playerNumber === 1) {
-    currentPlayer = player1Symbol;
-    updateMessage();
-    cells.forEach(cell => cell.addEventListener('click', handleCellClick))
-  } else {
-    currentPlayer = player2Symbol;
-    updateMessage();
-
-     // Initialize the current board state
-     const currentBoard = cells.map(cell => cell.textContent);
-
-    const aiMove = getBestMove(currentBoard, player2Symbol);
-    currentBoard[aiMove.index] = player2Symbol 
-    cells[aiMove.index].textContent = player2Symbol 
-    cells[aiMove.index].classList.add(`player-${player2Symbol.toLowerCase()}`)
-    updateMessage()
-    switchPlayers()
+      const score = minimax(newState, player, true);
+      bestScore = Math.min(bestScore, score);
+    }
+    return bestScore;
   }
 }
 
-playVsAIButton.addEventListener('click', startVsAI);
-logo.appendChild(playVsAIButton)
+
 
 updateMessage(); //call to set initial message

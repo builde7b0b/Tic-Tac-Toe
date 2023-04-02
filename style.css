@@ -147,12 +147,14 @@ button:hover {
 .container {
     flex-direction: column;
     max-width: 200px;
+    width: 80vw;
+    height: 80vw;
  
 }
 
 .cell {
-    width: 100px;
-    height: 100px; 
+    width: 25%;
+    height: 25%; 
     font-size: 48px;
     display: flex;
     justify-content: center;
@@ -163,6 +165,34 @@ button:hover {
     cursor: pointer;
     
 }
+
+.logo-container {
+    font-size: 24px;
+  }
+
+  .stat-container {
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .stats-box {
+    margin: 10px 0;
+    padding: 5px;
+  }
+
+  .stats-box > div {
+    font-size: 18px;
+  }
+
+  .symbol-box {
+    margin-top: 10px;
+  }
+
+  .symbol {
+    font-size: 1.5rem;
+    margin: 5px;
+  }
 }
 
 
