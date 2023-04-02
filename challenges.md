@@ -60,3 +60,18 @@ Audio()
 having trouble with grid and getting it to size down according to screens size.
 
 - [] Todo #11: Figure out how to make the grid smaller when we decrease the screen size just like with the stats box.
+
+- [] Create an AI opponent: teach JavaScript to play an unbeatable game against you
+Creating an AI opponent seems like a complex task.
+We need another player that knows the game board and can respond to any pattern of movements from the other player.
+Resources: minimax search, expectimax optimization, MiniMax algorithm
+
+Create AI player
+teach player about 
+  game board and how to win 
+
+Ai working sort of - Issue: simulates entire game instead of move by move
+script.js:566 Uncaught TypeError: cells.map is not a function
+    at HTMLButtonElement.startVsAI (script.js:566:33)
+
+
