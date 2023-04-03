@@ -258,20 +258,40 @@ const audio = new Audio('splat.wav');
 
 const resetAudio = new Audio('break.wav')
 
+
+let gameMessage = document.createElement("div")
+
 const vsAiButton = document.createElement('button');
 vsAiButton.textContent = 'Play against AI';
 document.body.appendChild(vsAiButton);
 vsAiButton.addEventListener('click', () => {
   vsAI = true;
   player2Symbol = "🤖"; // Set the AI's symbol to the robot
+  
+  
+  gameMessage.innerHTML = ''; // clear previous message
+  gameMessage.textContent = "Playing against AI"
+  gameMessage.className = "game-message"
+  message.appendChild(gameMessage)
 });
+
 
 const vsUserButton = document.createElement('button');
 vsUserButton.textContent = 'Play against User';
 document.body.appendChild(vsUserButton);
 vsUserButton.addEventListener('click', () => {
   vsAI = false;
+  
+  
+  gameMessage.innerHTML = ''; // clear previous message
+    gameMessage.textContent = "Playing against user"
+    gameMessage.className = "game-message"
+    message.appendChild(gameMessage)    
+  
+  
 });
+
+
 
 
 

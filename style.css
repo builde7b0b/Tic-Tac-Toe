@@ -214,6 +214,11 @@ button:hover {
 
 }
 
+.game-message{
+    font-size: 10px;
+
+}
+
 .symbol-box {
     display: flex;
     flex-wrap: wrap;

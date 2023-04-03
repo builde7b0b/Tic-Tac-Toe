@@ -76,3 +76,20 @@ script.js:566 Uncaught TypeError: cells.map is not a function
 check handleCellClick function
 handleCellClick function for every empty cell when the computer is playing. This causes the computer to make all the moves by itself, without giving the player a chance to play.
 check if the computer is playing and handle the computer's move separately. 
+
+
+When we click the playing against user button, Display a Text underneath our message that says What type of game we're playing, Vs User or Vs AI?
+
+When we click on our symbol, we want to add it to the clipboard and emit a small toast notification so we know we copied it.
+
+In the Stats box, we need to add a symbol for the ai
+
+When the page loads, we want our message to say "Click a square to start"
+Currently: "It's X's Turn.
+
+The AI is currently not that smart at tic tac toe, How can we make it harder to beat?
+
+
+
+
+
