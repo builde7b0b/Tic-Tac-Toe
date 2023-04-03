@@ -251,6 +251,29 @@ symbolBox.appendChild(symbolParty)
 symbolBox.appendChild(symbolUnicorn)
 
 
+// add copy paste symbol functionality 
+// const symbolBox = document.querySelector('.symbol-box')
+
+symbolBox.addEventListener('click', (e) => {
+  const symbol = e.target.textContent
+
+  //Create a new txtArea element and set its value to the symbol 
+  const textarea = document.createElement('textarea')
+  textarea.value = symbol 
+  document.body.appendChild(textarea)
+
+  // Select the textarea nad copy its contents to the clipboard
+  textarea.select();
+  document.execCommand('copy')
+
+  // remove the textarea element 
+  document.body.removeChild(textarea) 
+
+  //Display a notification
+  toastr.success('Symbol copied to clipboard');
+})
+
+
 
 
 // Create audio element

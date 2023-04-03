@@ -55,7 +55,7 @@ add event listener with function to change the symbol
 JS Built in methods for sound/audio
 Audio()
 
-- [] Todo #10: Make your site fully responsive so that it is playable from a mobile phone
+- [X] Todo #10: Make your site fully responsive so that it is playable from a mobile phone
 @media - CSS 
 having trouble with grid and getting it to size down according to screens size.
 
@@ -66,29 +66,29 @@ Creating an AI opponent seems like a complex task.
 We need another player that knows the game board and can respond to any pattern of movements from the other player.
 Resources: minimax search, expectimax optimization, MiniMax algorithm
 
-Create AI player
-teach player about 
-  game board and how to win 
+- [X]Create AI player
 
-Ai working sort of - Issue: simulates entire game instead of move by move
+- [X] [FIXED]Ai working sort of - Issue: simulates entire game instead of move by move
 script.js:566 Uncaught TypeError: cells.map is not a function
     at HTMLButtonElement.startVsAI (script.js:566:33)
 check handleCellClick function
 handleCellClick function for every empty cell when the computer is playing. This causes the computer to make all the moves by itself, without giving the player a chance to play.
 check if the computer is playing and handle the computer's move separately. 
 
-
+- [X]Playing Vs... Text
 When we click the playing against user button, Display a Text underneath our message that says What type of game we're playing, Vs User or Vs AI?
 
+- []Copy Paste Symbols Functionality
 When we click on our symbol, we want to add it to the clipboard and emit a small toast notification so we know we copied it.
 
-In the Stats box, we need to add a symbol for the ai
+- [] In the Stats box, we need to add a symbol for the ai
 
+- [] Page Load Text bug
 When the page loads, we want our message to say "Click a square to start"
 Currently: "It's X's Turn.
 
+- []Smarter AI
 The AI is currently not that smart at tic tac toe, How can we make it harder to beat?
-
 
 
 
