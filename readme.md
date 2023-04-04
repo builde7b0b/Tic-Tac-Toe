@@ -17,11 +17,21 @@ This is a simple implementation of a Tic Tac Toe game. The game can be played by
 ## Bronze MVP
 ![Bronze MPV](bronze.png)
 
-## Features
-* 
+### Features
+*  Start a new tic tac toe game VS Another player
+*  play the game again without refreshing the page
+*  Display a message to Winner and On Every Turn,
 
 ## Silver MVP
 ![Silver](silver.png)
+
+### Features
+* Keep track of multiple game rounds
+* Players can customize their token Symbols
+* Audio Effects
+* Enhanced Styling
+* Copy Paste Custom Symbols
+* Create an AI opponent
 
 ## Installation
 
@@ -118,15 +128,17 @@ The game logic is based on the following psuedo code:
 
 
 ## Problem-Solving Strategy, Challenges and Unsolved Issues
-[Link to Chalenges and Task List for Updates and Features](challenges.md)
+[Link to Challenges and Task List for Updates and Features](challenges.md)
 
 ## How I Solved For the Winner
-In a game of tic tac toe, there are only 8 possible ways to win: 3 rows, 3 columns, and 2 diagonals. To determine if there is a winner, we need to check if any of these 8 possible winning combinations have been achieved by a player.
+In a game of tic tac toe, there are only 8 possible ways to win: 3 rows, 3 columns, and 2 diagonals. 
+
+To determine if there is a winner, we need to check if any of these 8 possible winning combinations have been achieved by a player.
 
 ### Steps: 
-Define an array of all possible winning combinations:
-Loop through the winConditions array and check if any of the values in the squares array match the winning combination for the current player.
-Call the checkForWinner function for each player (i.e. "X" and "O") and check if they have won the game.
+* Define an array of all possible winning combinations.
+* Loop through the winConditions array and check if any of the values in the squares array match the winning combination for the current player.
+* Call the checkForWinner function for each player (i.e. "X" and "O") and check if they have won the game.
 
 
 
@@ -135,22 +147,22 @@ handleCellClick() is an important function in the Tic Tac Toe app. This function
 
 ### Here's how it works:
 
-It starts by playing an audio sound to give feedback to the user that a cell has been clicked.
+* It starts by playing an audio sound to give feedback to the user that a cell has been clicked.
 
-Next, it checks if the game has already ended. If it has, the function returns and the click is ignored.
+* Next, it checks if the game has already ended. If it has, the function returns and the click is ignored.
 
-The function then gets the index of the clicked cell and checks if the cell is already occupied. If it is, the function returns and the click is ignored.
+* The function then gets the index of the clicked cell and checks if the cell is already occupied. If it is, the function returns and the click is ignored.
 
-The function then gets the current player's symbol and positions array.
+* The function then gets the current player's symbol and positions array.
 
-The function adds the clicked cell's index to the current player's positions array.
+* The function adds the clicked cell's index to the current player's positions array.
 
-The function puts the current player's symbol into the clicked cell.
+* The function puts the current player's symbol into the clicked cell.
 
-The function checks if the current player has won by calling the checkWin() function. If the current player has won, the game ends and the winner is displayed.
+* The function checks if the current player has won by calling the checkWin() function. If the current player has won, the game ends and the winner is displayed.
 
-If the game has not ended, the function checks if there is a tie by calling the checkTie() function. If there is a tie, the game ends and a tie message is displayed.
+* If the game has not ended, the function checks if there is a tie by calling the checkTie() function. If there is a tie, the game ends and a tie message is displayed.
 
-If the game has not ended and the current player is playing against the AI, the AI makes a move and the game board is updated accordingly. If the AI has won, the game ends and the winner is displayed.
+* If the game has not ended and the current player is playing against the AI, the AI makes a move and the game board is updated accordingly. If the AI has won, the game ends and the winner is displayed.
 
-If the game has not ended, the function switches to the other player's turn and updates the message to display who's turn it is.
+* If the game has not ended, the function switches to the other player's turn and updates the message to display who's turn it is.
