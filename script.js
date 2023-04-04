@@ -280,9 +280,15 @@ symbolBox.addEventListener('click', (e) => {
 const audio = new Audio('splat.wav');
 
 const resetAudio = new Audio('break.wav')
+let vsAI = true;
+const gameMessage = document.createElement("div")
 
-
-let gameMessage = document.createElement("div")
+function addGameMessage() {
+gameMessage.textContent = "Playing against AI"
+gameMessage.className = "game-message"
+message.appendChild(gameMessage)
+}
+window.addEventListener("load", addGameMessage);
 
 const vsAiButton = document.createElement('button');
 vsAiButton.textContent = 'Play against AI';
@@ -392,6 +398,7 @@ function handleCellClick(e) {
     endGame("It's a tie!");
     return; // exit early if there is a tie
   } else if (vsAI && currentPlayer.symbol === player1Symbol) {
+    setTimeout(() => {
     // If playing against AI and it's the AI's turn, get the best move and update the board
     const cellsArray = [...cells];
     const aiMove = getBestMove(cellsArray.map(cell => cell.textContent), player2Symbol);
@@ -410,12 +417,14 @@ function handleCellClick(e) {
     } else {
       // switch Turn's 
       switchPlayers();
+      // update message
+      updateMessage();
     }
-  } else {
-    // delay for 1 second and switch turn to player 1
-    setTimeout(() => {
-      switchPlayers();
-    }, 3000);
+  }, 500) } else {
+    // switch Turn's 
+    switchPlayers();
+    // update message
+    updateMessage();
   }
 }
 
@@ -509,6 +518,7 @@ function checkTie() {
 
 // define the resetGame function 
 function resetGame() {
+  resetAudio.play();
   // clear all cells on the board 
   cells.forEach(cell => {
     cell.textContent = ''
@@ -522,12 +532,14 @@ function resetGame() {
 
   //reset message 
   message.textContent = 'Click a square to start the game!'
+  message.appendChild(gameMessage)
+
 
   //switch to player 1 turn
   currentPlayer = player1Symbol;
   // Reset audio and play
   resetAudio.currentTime = 0;
-  resetAudio.play();
+  
 }
 
 

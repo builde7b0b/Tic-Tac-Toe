@@ -90,6 +90,8 @@ Currently: "It's X's Turn.
 - []Smarter AI
 The AI is currently not that smart at tic tac toe, How can we make it harder to beat?
 
+- []BUG - Delated Message update
+Message update when we click a square is delayed, may have added a setTimeout in the wrong spot when trying to delay the ai responses.
+Check HandleClick
 
-
-
+- []Add case where the current player is not the AI to handleClick
