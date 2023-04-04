@@ -148,5 +148,6 @@ To determine if there is a winner, we need to check if any of these 8 possible w
 //Display a notification
   toastr.success('Symbol copied to clipboard');
 
-### Why?: Although it isn't exactly a function, We used toastrJS library to create a simple notification to let a user know when they copied a symbol successfully. I really just love how simple pieces of code such as this can make a huge difference in the user experience of the application which is why it's one of my favorite pieces of code in this application.
+### Why?: 
+Although it isn't exactly a function, We used toastrJS library to create a simple notification to let a user know when they copied a symbol successfully. I really just love how simple pieces of code such as this can make a huge difference in the user experience of the application which is why it's one of my favorite pieces of code in this application.
 
