@@ -55,6 +55,8 @@
 
 
   // init variables
+  
+  
   let player1Symbol = 'X'; //player id's
   let player2Symbol = 'O';
   let player1Positions = []; // player positions arrays
@@ -103,15 +105,18 @@
   logo.textContent = 'Tic Tac Gene'
   logo.className = 'logo-container'
   logo.classList.add('logo');
+
   const icon = document.createElement('img');
   icon.src = 'https://img.icons8.com/external-others-cattaleeya-thongsriphong/256/external-game-relax-at-home-color-line-others-cattaleeya-thongsriphong.png';
   icon.alt = 'Icon';
 
   const title = document.createElement('span');
-title.textContent = 'Your Rules, Your Way';
-title.className = 'game-title'
-logo.appendChild(icon);
-logo.appendChild(title);
+  title.textContent = 'Your Rules, Your Way';
+  title.className = 'game-title'
+
+  // Display Elements
+  logo.appendChild(icon);
+  logo.appendChild(title);
   document.body.appendChild(logo)
   document.body.appendChild(statsContainer)
   statsContainer.appendChild(statsBox)
@@ -140,24 +145,24 @@ logo.appendChild(title);
     
    
 // Create Board 
-//const grid = document.getElementById('grid');
-  console.log("Connected")
+  
+    console.log("Connected")
 
-  const container = document.createElement('div');
-  container.className = 'container';
+    const container = document.createElement('div');
+    container.className = 'container';
 
-  // loop to create each cell
-  for (let i = 0; i < 9; i++) {
-      const cell = document.createElement('div')
+    // loop to create each cell
+    for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('div')
 
-      cell.className = 'cell';
-      cell.dataset.index = i; // this allows us to keep track of each cell/clicks
+        cell.className = 'cell';
+        cell.dataset.index = i; // this allows us to keep track of each cell/clicks
 
-      container.appendChild(cell)
+        container.appendChild(cell)
 
-  }
-  // add cells to UI
-  document.body.appendChild(container)
+    }
+    // add cells to UI
+    document.body.appendChild(container)
 
   // select all cells
   // adding event listener to each cell
@@ -176,7 +181,6 @@ logo.appendChild(title);
   const resetButton = document.createElement('button')
   resetButton.textContent = 'Reset'
   resetButton.addEventListener('click', resetGame)
-
   // Add the 'Reset" button to the page 
   document.body.appendChild(resetButton)
 
@@ -186,6 +190,7 @@ logo.appendChild(title);
   // Allow players to customize their symbols
 const player1SymbolInput = document.createElement('input');
 player1SymbolInput.placeholder = 'Player 1 Symbol';
+
 const player2SymbolInput = document.createElement('input');
 player2SymbolInput.placeholder = 'Player 2 Symbol';
 document.body.appendChild(player1SymbolInput);
@@ -238,10 +243,8 @@ let symbolUnicorn = document.createElement('div')
 symbolUnicorn.className = 'symbol'
 symbolUnicorn.textContent = '🦄'
 
-
 document.body.appendChild(symbolBox)
 symbolBox.appendChild(symbolHeart)
-
 symbolBox.appendChild(symbolStar)
 symbolBox.appendChild(symbolRainbow)
 symbolBox.appendChild(symbolKing)
@@ -252,8 +255,6 @@ symbolBox.appendChild(symbolUnicorn)
 
 
 // add copy paste symbol functionality 
-// const symbolBox = document.querySelector('.symbol-box')
-
 symbolBox.addEventListener('click', (e) => {
   const symbol = e.target.textContent
 
@@ -283,13 +284,6 @@ const resetAudio = new Audio('break.wav')
 let vsAI = true;
 const gameMessage = document.createElement("div")
 
-function addGameMessage() {
-gameMessage.textContent = "Playing against AI"
-gameMessage.className = "game-message"
-message.appendChild(gameMessage)
-}
-window.addEventListener("load", addGameMessage);
-
 const vsAiButton = document.createElement('button');
 vsAiButton.textContent = 'Play against AI';
 document.body.appendChild(vsAiButton);
@@ -297,13 +291,11 @@ vsAiButton.addEventListener('click', () => {
   vsAI = true;
   player2Symbol = "🤖"; // Set the AI's symbol to the robot
   
-  
   gameMessage.innerHTML = ''; // clear previous message
   gameMessage.textContent = "Playing against AI"
   gameMessage.className = "game-message"
   message.appendChild(gameMessage)
 });
-
 
 const vsUserButton = document.createElement('button');
 vsUserButton.textContent = 'Play against User';
@@ -311,18 +303,22 @@ document.body.appendChild(vsUserButton);
 vsUserButton.addEventListener('click', () => {
   vsAI = false;
   
-  
   gameMessage.innerHTML = ''; // clear previous message
     gameMessage.textContent = "Playing against user"
     gameMessage.className = "game-message"
     message.appendChild(gameMessage)    
   
-  
 });
 
 
 
-
+function addGameMessage() {
+  gameMessage.textContent = "Playing against AI"
+  gameMessage.className = "game-message"
+  message.appendChild(gameMessage)
+  }
+  window.addEventListener("load", addGameMessage);
+  
 
 // START FUNCTIONS
 // #################

@@ -14,24 +14,6 @@ This is a simple implementation of a Tic Tac Toe game. The game can be played by
 ## Wireframe
 ![Wireframe](wireframe.png)
 
-## Bronze MVP
-![Bronze MPV](bronze.png)
-
-### Features
-*  Start a new tic tac toe game VS Another player
-*  play the game again without refreshing the page
-*  Display a message to Winner and On Every Turn,
-
-## Silver MVP
-![Silver](silver.png)
-
-### Features
-* Keep track of multiple game rounds
-* Players can customize their token Symbols
-* Audio Effects
-* Enhanced Styling
-* Copy Paste Custom Symbols
-* Create an AI opponent
 
 ## Installation
 
@@ -119,6 +101,26 @@ The game logic is based on the following psuedo code:
     // If the player's positions match a winning combination, they have won
 
 ```
+
+## Bronze MVP
+![Bronze MPV](bronze.png)
+
+### Features
+*  Start a new tic tac toe game VS Another player
+*  play the game again without refreshing the page
+*  Display a message to Winner and On Every Turn,
+
+## Silver MVP
+![Silver](silver.png)
+
+### Features
+* Keep track of multiple game rounds
+* Players can customize their token Symbols
+* Audio Effects
+* Enhanced Styling
+* Copy Paste Custom Symbols
+* Create an AI opponent
+
 
 ## Technologies Used 
 * HTML / CSS / Javascript
