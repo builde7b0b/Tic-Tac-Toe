@@ -145,26 +145,8 @@ To determine if there is a winner, we need to check if any of these 8 possible w
 
 
 ## Favorite Functions
-handleCellClick() is an important function in the Tic Tac Toe app. This function is called whenever a player clicks on a cell in the game board. 
+//Display a notification
+  toastr.success('Symbol copied to clipboard');
 
-### Here's how it works:
+### Why?: Although it isn't exactly a function, We used toastrJS library to create a simple notification to let a user know when they copied a symbol successfully. I really just love how simple pieces of code such as this can make a huge difference in the user experience of the application which is why it's one of my favorite pieces of code in this application.
 
-* It starts by playing an audio sound to give feedback to the user that a cell has been clicked.
-
-* Next, it checks if the game has already ended. If it has, the function returns and the click is ignored.
-
-* The function then gets the index of the clicked cell and checks if the cell is already occupied. If it is, the function returns and the click is ignored.
-
-* The function then gets the current player's symbol and positions array.
-
-* The function adds the clicked cell's index to the current player's positions array.
-
-* The function puts the current player's symbol into the clicked cell.
-
-* The function checks if the current player has won by calling the checkWin() function. If the current player has won, the game ends and the winner is displayed.
-
-* If the game has not ended, the function checks if there is a tie by calling the checkTie() function. If there is a tie, the game ends and a tie message is displayed.
-
-* If the game has not ended and the current player is playing against the AI, the AI makes a move and the game board is updated accordingly. If the AI has won, the game ends and the winner is displayed.
-
-* If the game has not ended, the function switches to the other player's turn and updates the message to display who's turn it is.

@@ -312,6 +312,10 @@ vsUserButton.addEventListener('click', () => {
 
 
 
+
+
+
+
 function addGameMessage() {
   gameMessage.textContent = "Playing against AI"
   gameMessage.className = "game-message"
